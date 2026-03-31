@@ -1,0 +1,916 @@
+---
+const steps = [
+  {
+    id: "welcome",
+    title: "Making\nDecisions",
+    description:
+      "Decision making can be hard, but it doesn't have to be. By using this guide you can make decisions with confidence.",
+    detail:
+      "Structure your thoughts into manageable layers. Reduce cognitive load by focusing on one variable at a time.",
+    action: "Let's get started!",
+  },
+  {
+    id: "objective",
+    eyebrow: "Step 1 of 4",
+    title: "What are you trying to decide?",
+    description:
+      "This can be any question. Examples include:",
+    detail: "",
+    action: "Next",
+    examples: ["Should I go on a trip?", "Should I change jobs?", "Can I retire?"],
+    input: {
+      label: "Example Question",
+      placeholder: "Type your question here",
+      value: "Should I have a call with Garth?",
+    },
+  },
+  {
+    id: "gains",
+    eyebrow: "Step 2 of 5",
+    title: "What is there to gain?",
+    description:
+      "If you go with this decision, what do you serve to gain from this, how can you benefit? Are these important to you?",
+    detail: "",
+    action: "Next",
+    input: {
+      label: "Example Gains",
+      placeholder: "List what you could gain",
+      value:
+        "I can practice English\nEnglish will help me travel\nThis will increase my confidence\nI get more comfortable with Garth\nDiscover if I want more of Garth in my life",
+    },
+  },
+  {
+    id: "stakes",
+    eyebrow: "Step 3 of 5",
+    title: "What are the risks?",
+    description:
+      "What are the different possible things that can go wrong? What are all the risks? List them off here.",
+    detail: "",
+    action: "Next",
+    input: {
+      label: "Example Risks",
+      placeholder: "List the risks here",
+      value:
+        "I’m not good with phone calls.\nI can’t use gestures.\nI can’t use a translator.\nI don’t know when to hang up.\nIt will feel simply embarrassing.",
+    },
+  },
+  {
+    id: "timeline",
+    eyebrow: "Step 4 of 5",
+    title: "And if you don't do this?",
+    description:
+      "If you didn't go ahead with the decision, what would happen? What would you be missing out on?",
+    detail: "",
+    action: "Next",
+    input: {
+      label: "Example Consequences",
+      placeholder: "List what would happen if you do nothing",
+      value:
+        "I would miss out in connecting with Garth\nGarth might feel sad or hurt\nI would miss a chance to practice English\nI would miss a chance to improve my skills",
+    },
+  },
+  {
+    id: "mitigation",
+    eyebrow: "Step 5 of 5",
+    title: "How can we mitigate risk?",
+    description:
+      "Given the risks, what can be done to minimize these? Risks can always be mitigated.",
+    detail: "",
+    action: "Next",
+    input: {
+      label: "Example Mitigations",
+      placeholder: "List what could reduce the risks",
+      value:
+        "Explain that I feel embarrsed\nUse a video call for gestures\nType in Japanese in chat at the same time\nLearn the phrase \"I should go\"",
+    },
+  },
+  {
+    id: "conclusion",
+    eyebrow: "Conclusion",
+    title: "Conclusion",
+    description:
+      "If the gains are worth it - then minimize the risk.",
+    detail:
+      "Always remember the cost of not doing something or delaying something, it sometimes has a bigger impact of the risk itself.",
+    action: "Start Over",
+  },
+];
+---
+
+<section class="decision-app" data-decision-app data-steps={JSON.stringify(steps)}>
+  <main class="app-main">
+    <section class="screen screen-welcome is-active" data-screen="welcome" aria-live="polite">
+      <div class="hero-mark"></div>
+      <div class="hero-copy">
+        <h1>Making<br />Decisions</h1>
+        <p class="lede">
+          Decision making can be hard, but it doesn't have to be. By using this guide you
+          can make decisions with confidence.
+        </p>
+        <p class="supporting-intro">
+          This process can be applied to almost any decsion, both large and small.
+        </p>
+        <p class="supporting-intro">
+          For now, we will walk through an example scenario together. Later, you will be
+          able to use the same process for your own real decisions.
+        </p>
+      </div>
+    </section>
+
+    <section class="screen screen-question" data-screen="question" hidden>
+      <div class="screen-intro">
+        <p class="eyebrow" data-eyebrow></p>
+        <h2 data-title></h2>
+        <p class="lede" data-description></p>
+        <ul class="example-list" data-examples hidden></ul>
+      </div>
+
+      <div class="question-panel">
+        <p class="supporting-copy" data-detail></p>
+        <label class="editorial-input" data-input-wrap hidden>
+          <span class="input-label" data-input-label></span>
+          <div class="editorial-input-surface">
+            <textarea
+              rows="5"
+              data-input
+            ></textarea>
+            <div class="editorial-input-accent" aria-hidden="true"></div>
+          </div>
+        </label>
+        <div class="option-list" data-options></div>
+      </div>
+    </section>
+
+    <section class="screen screen-summary" data-screen="summary" hidden>
+      <div class="screen-intro">
+        <p class="eyebrow">Conclusion</p>
+        <h2>Conclusion</h2>
+        <p class="lede">If the gains are worth it - then minimize the risk.</p>
+      </div>
+
+      <div class="summary-panel">
+        <div class="summary-card">
+          <span class="summary-label">If you don't do this</span>
+          <p data-summary-timeline></p>
+        </div>
+        <div class="summary-card">
+          <span class="summary-label">Risks</span>
+          <p data-summary-stakes></p>
+        </div>
+        <div class="summary-note summary-question">
+          Of the two, which is the worst outcome?
+        </div>
+        <div class="summary-note">
+          Always remember the cost of not doing something or delaying something, it
+          sometimes has a bigger impact of the risk itself.
+        </div>
+        <div class="summary-note">
+          The more you de-risk the situation, the more comfortable you will be with the
+          decison you make.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="bottom-bar">
+    <div class="bottom-shell">
+      <button class="secondary-action" type="button" data-back hidden>Back</button>
+      <div class="progress" aria-label="Progress" data-progress></div>
+      <button class="primary-action" type="button" data-next>
+        <span data-next-label>Let's get started!</span>
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const root = document.querySelector("[data-decision-app]");
+
+  if (root) {
+    const steps = JSON.parse(root.dataset.steps || "[]");
+    const questionScreen = root.querySelector('[data-screen="question"]');
+    const summaryScreen = root.querySelector('[data-screen="summary"]');
+    const welcomeScreen = root.querySelector('[data-screen="welcome"]');
+    const nextButton = root.querySelector("[data-next]");
+    const backButton = root.querySelector("[data-back]");
+    const nextLabel = root.querySelector("[data-next-label]");
+    const progress = root.querySelector("[data-progress]");
+    const title = root.querySelector("[data-title]");
+    const eyebrow = root.querySelector("[data-eyebrow]");
+    const description = root.querySelector("[data-description]");
+    const detail = root.querySelector("[data-detail]");
+    const examplesHost = root.querySelector("[data-examples]");
+    const inputWrap = root.querySelector("[data-input-wrap]");
+    const inputLabel = root.querySelector("[data-input-label]");
+    const inputField = root.querySelector("[data-input]");
+    const optionsHost = root.querySelector("[data-options]");
+    const questionPanel = root.querySelector(".question-panel");
+
+    const state = {
+      index: 0,
+      selections: {},
+    };
+
+    for (const step of steps) {
+      if (step.input?.value && !state.selections[step.id]) {
+        state.selections[step.id] = step.input.value;
+      }
+    }
+
+    function getStepIndexFromUrl() {
+      const url = new URL(window.location.href);
+      const stepId = url.searchParams.get("step");
+
+      if (!stepId) return 0;
+
+      const foundIndex = steps.findIndex((step) => step.id === stepId);
+      return foundIndex >= 0 ? foundIndex : 0;
+    }
+
+    function syncUrl(replace = false) {
+      const step = steps[state.index];
+
+      if (!step) return;
+
+      const url = new URL(window.location.href);
+
+      if (step.id === "welcome") {
+        url.searchParams.delete("step");
+      } else {
+        url.searchParams.set("step", step.id);
+      }
+
+      const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+      const method = replace ? "replaceState" : "pushState";
+      window.history[method]({ step: step.id }, "", nextUrl);
+    }
+
+    const questionStepIds = steps
+      .filter((step) => Array.isArray(step.options) || step.input)
+      .map((step) => step.id);
+
+    function renderProgress() {
+      if (!progress) return;
+
+      const dots = steps.map((step, index) => {
+        const active = index === state.index ? "is-active" : "";
+        const complete = index < state.index ? "is-complete" : "";
+        return `<span class="progress-dot ${active} ${complete}" aria-hidden="true"></span>`;
+      });
+
+      progress.innerHTML = dots.join("");
+    }
+
+    function renderQuestion(step) {
+      if (!questionScreen || !optionsHost || !title || !eyebrow || !description || !detail) {
+        return;
+      }
+
+      eyebrow.textContent = step.eyebrow;
+      title.textContent = step.title;
+      description.textContent = step.description;
+      detail.textContent = step.detail;
+
+      if (examplesHost) {
+        const hasExamples = Array.isArray(step.examples) && step.examples.length > 0;
+        examplesHost.hidden = !hasExamples;
+        examplesHost.innerHTML = hasExamples
+          ? step.examples.map((example) => `<li>${example}</li>`).join("")
+          : "";
+      }
+
+      if (inputWrap && inputField && inputLabel) {
+        const hasInput = Boolean(step.input);
+        inputWrap.hidden = !hasInput;
+        questionPanel?.classList.toggle("question-panel-input", hasInput);
+
+        if (hasInput) {
+          inputLabel.textContent = step.input.label || "";
+          inputField.placeholder = step.input.placeholder || "";
+          inputField.value = state.selections[step.id] || step.input.value || "";
+        } else {
+          inputField.value = "";
+        }
+      }
+
+      const selectedValue = state.selections[step.id];
+      const hasOptions = Array.isArray(step.options) && step.options.length > 0;
+      optionsHost.hidden = !hasOptions;
+      optionsHost.innerHTML = (step.options || [])
+        .map((option, index) => {
+          const isSelected = selectedValue === option.label;
+          return `
+            <button
+              class="option-card ${isSelected ? "is-selected" : ""}"
+              type="button"
+              data-option
+              data-step="${step.id}"
+              data-value="${option.label}"
+              aria-pressed="${isSelected ? "true" : "false"}"
+            >
+              <span class="option-index">0${index + 1}</span>
+              <span class="option-copy">
+                <strong>${option.label}</strong>
+                <span>${option.description}</span>
+              </span>
+            </button>
+          `;
+        })
+        .join("");
+    }
+
+    function renderSummary() {
+      const stakes = root.querySelector("[data-summary-stakes]");
+      const timeline = root.querySelector("[data-summary-timeline]");
+
+      if (stakes) {
+        stakes.textContent = state.selections.stakes || "Not selected";
+      }
+
+      if (timeline) {
+        timeline.textContent = state.selections.timeline || "Not selected";
+      }
+    }
+
+    function syncScreens() {
+      const step = steps[state.index];
+      const isWelcome = step.id === "welcome";
+      const isSummary = step.id === "conclusion";
+
+      if (welcomeScreen) {
+        welcomeScreen.hidden = !isWelcome;
+        welcomeScreen.classList.toggle("is-active", isWelcome);
+      }
+
+      if (questionScreen) {
+        questionScreen.hidden = isWelcome || isSummary;
+        questionScreen.classList.toggle("is-active", !isWelcome && !isSummary);
+      }
+
+      if (summaryScreen) {
+        summaryScreen.hidden = !isSummary;
+        summaryScreen.classList.toggle("is-active", isSummary);
+      }
+
+      if (!isWelcome && !isSummary) {
+        renderQuestion(step);
+      }
+
+      if (isSummary) {
+        renderSummary();
+      }
+
+      if (nextLabel) {
+        nextLabel.textContent = step.action;
+      }
+
+      if (backButton) {
+        backButton.hidden = state.index === 0;
+      }
+
+      if (nextButton) {
+        const requiresChoice = Array.isArray(step.options) && questionStepIds.includes(step.id);
+        nextButton.disabled = requiresChoice && !state.selections[step.id];
+      }
+
+      renderProgress();
+    }
+
+    root.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-option]");
+      if (option) {
+        const stepId = option.dataset.step;
+        const value = option.dataset.value;
+
+        if (stepId && value) {
+          state.selections[stepId] = value;
+          syncScreens();
+        }
+      }
+    });
+
+    inputField?.addEventListener("input", (event) => {
+      const step = steps[state.index];
+
+      if (!step?.input) return;
+
+      state.selections[step.id] = event.target.value;
+      syncScreens();
+    });
+
+    nextButton?.addEventListener("click", () => {
+      if (state.index === steps.length - 1) {
+        state.index = 0;
+        state.selections = {};
+        syncUrl();
+        syncScreens();
+        return;
+      }
+
+      state.index += 1;
+      syncUrl();
+      syncScreens();
+    });
+
+    backButton?.addEventListener("click", () => {
+      state.index = Math.max(0, state.index - 1);
+      syncUrl();
+      syncScreens();
+    });
+
+    window.addEventListener("popstate", () => {
+      state.index = getStepIndexFromUrl();
+      syncScreens();
+    });
+
+    state.index = getStepIndexFromUrl();
+    syncUrl(true);
+    syncScreens();
+  }
+</script>
+
+<style>
+  :global(:root) {
+    color-scheme: light;
+    --surface: #f8faf9;
+    --surface-bright: #fbfcfb;
+    --surface-low: #f1f4f3;
+    --surface-high: #e4e9e8;
+    --surface-highest: #dde4e3;
+    --surface-ghost: rgb(255 255 255 / 0.85);
+    --surface-shadow: rgb(45 52 51 / 0.06);
+    --text: #2d3433;
+    --text-soft: #596060;
+    --text-muted: #555d59;
+    --primary: #4c645a;
+    --primary-dim: #40584e;
+    --primary-container: #cde9db;
+    --primary-ink: #3f574d;
+    --outline-soft: rgb(117 124 123 / 0.16);
+    --font-display: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+    --font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+    --font-label: "Inter", "Helvetica Neue", sans-serif;
+    --ease-calm: cubic-bezier(0.22, 1, 0.36, 1);
+    --radius-default: 0.125rem;
+    --radius-lg: 0.25rem;
+    --radius-xl: 0.5rem;
+    --radius-full: 0.75rem;
+  }
+
+  :global(body) {
+    margin: 0;
+    min-height: 100svh;
+    min-height: 100dvh;
+    background:
+      radial-gradient(circle at top left, rgb(205 233 219 / 0.55), transparent 28%),
+      linear-gradient(180deg, #fbfcfb 0%, var(--surface) 40%, #f4f7f6 100%);
+    color: var(--text);
+    font-family: var(--font-body);
+  }
+
+  .decision-app {
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding: 0 1rem calc(6.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .app-main,
+  .bottom-shell {
+    width: min(100%, 52rem);
+    margin: 0 auto;
+  }
+
+  .app-main {
+    padding-top: clamp(2.5rem, 9vw, 5.5rem);
+  }
+
+  .screen {
+    animation: rise 420ms var(--ease-calm);
+  }
+
+  .hero-mark {
+    width: 5rem;
+    height: 0.3rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary) 18%, transparent);
+  }
+
+  .hero-copy {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+  }
+
+  .eyebrow {
+    margin: 0;
+    color: var(--text-muted);
+    font-family: var(--font-label);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.9rem, 10vw, 4.8rem);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-size: clamp(2.35rem, 8vw, 4rem);
+    line-height: 1.02;
+  }
+
+  .lede {
+    margin: 0;
+    max-width: 34rem;
+    color: var(--text-soft);
+    font-size: clamp(1.05rem, 4vw, 1.35rem);
+    line-height: 1.65;
+  }
+
+  .supporting-intro {
+    margin: 0;
+    max-width: 32rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .example-list {
+    display: grid;
+    gap: 0.7rem;
+    margin: 0;
+    padding-left: 1.35rem;
+    color: var(--text-soft);
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  .hero-panel,
+  .question-panel,
+  .summary-panel {
+    margin-top: 1.25rem;
+    padding: 1.6rem;
+    border-radius: var(--radius-xl);
+    background: var(--surface-low);
+  }
+
+  .supporting-copy,
+  .summary-note {
+    margin: 0;
+    color: var(--text-soft);
+    line-height: 1.65;
+    font-size: 1rem;
+  }
+
+  .screen-intro {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .question-panel,
+  .summary-panel {
+    display: grid;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding: 1.3rem;
+  }
+
+  .question-panel.question-panel-input {
+    background: transparent;
+    padding: 0;
+    gap: 1.1rem;
+    margin-top: 2.25rem;
+  }
+
+  .editorial-input {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .input-label {
+    color: var(--text-muted);
+    font-family: var(--font-label);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 320ms var(--ease-calm);
+  }
+
+  .editorial-input:focus-within .input-label {
+    color: var(--primary);
+  }
+
+  .editorial-input-surface {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    background: #eaefee;
+    transition:
+      background-color 320ms var(--ease-calm),
+      box-shadow 320ms var(--ease-calm),
+      transform 320ms var(--ease-calm);
+  }
+
+  .editorial-input:focus-within .editorial-input-surface {
+    background: var(--surface-high);
+    box-shadow: 0 12px 36px rgb(45 52 51 / 0.05);
+  }
+
+  .editorial-input textarea {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 10.75rem;
+    box-sizing: border-box;
+    padding: 0.85rem 0.95rem 1.1rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 1.08rem;
+    line-height: 1.7;
+    resize: vertical;
+  }
+
+  .editorial-input textarea::placeholder {
+    color: #acb3b2;
+  }
+
+  .editorial-input textarea:focus {
+    outline: none;
+  }
+
+  .editorial-input-accent {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 7rem;
+    height: 7rem;
+    background: linear-gradient(135deg, transparent 20%, rgb(76 100 90 / 0.08));
+    pointer-events: none;
+  }
+
+  .option-list {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .option-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    width: 100%;
+    padding: 1.2rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-xl);
+    background: var(--surface);
+    color: inherit;
+    text-align: left;
+    transition:
+      transform 320ms var(--ease-calm),
+      background-color 320ms var(--ease-calm),
+      border-color 320ms var(--ease-calm);
+  }
+
+  .option-card:hover,
+  .option-card:focus-visible {
+    transform: translateY(-1px);
+    outline: none;
+    border-color: var(--outline-soft);
+    background: var(--surface-bright);
+  }
+
+  .option-card.is-selected {
+    background: var(--primary-container);
+    border-color: color-mix(in srgb, var(--primary) 34%, transparent);
+  }
+
+  .option-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 999px;
+    background: var(--surface-high);
+    color: var(--text-muted);
+    font-family: var(--font-label);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .option-card.is-selected .option-index {
+    background: rgb(255 255 255 / 0.46);
+    color: var(--primary-ink);
+  }
+
+  .option-copy {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .option-copy strong,
+  .summary-card p {
+    font-size: 1.02rem;
+    line-height: 1.45;
+    color: var(--text);
+  }
+
+  .option-copy span {
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+
+  .summary-panel {
+    background: transparent;
+    padding: 0;
+  }
+
+  .summary-card {
+    display: grid;
+    gap: 0.45rem;
+    padding: 1.3rem 1.4rem;
+    border-radius: var(--radius-xl);
+    background: var(--surface-low);
+  }
+
+  .summary-label {
+    color: var(--text-muted);
+    font-family: var(--font-label);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .summary-card p {
+    margin: 0;
+  }
+
+  .summary-note {
+    padding: 0.25rem 0.25rem 0;
+  }
+
+  .summary-question {
+    color: var(--text);
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .bottom-bar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    padding: 0.75rem 1rem calc(0.9rem + env(safe-area-inset-bottom, 0px));
+    pointer-events: none;
+  }
+
+  .bottom-shell {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.65rem;
+    border-radius: var(--radius-full);
+    background: var(--surface-ghost);
+    box-shadow: 0 -8px 40px var(--surface-shadow);
+    backdrop-filter: blur(18px);
+    pointer-events: auto;
+  }
+
+  .progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .progress-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--surface-highest);
+    transition:
+      transform 280ms var(--ease-calm),
+      background-color 280ms var(--ease-calm);
+  }
+
+  .progress-dot.is-active {
+    transform: scale(1.25);
+    background: var(--primary);
+  }
+
+  .progress-dot.is-complete {
+    background: color-mix(in srgb, var(--primary) 38%, var(--surface-highest));
+  }
+
+  .primary-action,
+  .secondary-action {
+    min-height: 3.5rem;
+    border: 0;
+    border-radius: var(--radius-full);
+    font: inherit;
+    transition:
+      transform 320ms var(--ease-calm),
+      opacity 320ms var(--ease-calm),
+      background-color 320ms var(--ease-calm);
+  }
+
+  .primary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0 1.25rem 0 1.45rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dim) 100%);
+    color: #e5fff2;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .primary-action:disabled {
+    opacity: 0.45;
+  }
+
+  .secondary-action {
+    padding: 0 1rem;
+    background: color-mix(in srgb, var(--surface-low) 92%, white);
+    color: var(--text-soft);
+    font-family: var(--font-label);
+    font-size: 0.92rem;
+    font-weight: 600;
+    border-radius: var(--radius-xl);
+  }
+
+  .primary-action:not(:disabled):hover,
+  .primary-action:not(:disabled):focus-visible,
+  .secondary-action:hover,
+  .secondary-action:focus-visible {
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  @media (max-width: 38rem) {
+    .decision-app {
+      padding-right: 0.75rem;
+      padding-left: 0.75rem;
+      padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .bottom-shell {
+      grid-template-columns: 1fr;
+      border-radius: var(--radius-full);
+      padding: 0.8rem;
+    }
+
+    .progress {
+      order: -1;
+    }
+
+    .secondary-action,
+    .primary-action {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .screen,
+    .option-card,
+    .progress-dot,
+    .primary-action,
+    .secondary-action {
+      animation: none;
+      transition: none;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
