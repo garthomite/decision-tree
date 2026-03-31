@@ -2,97 +2,97 @@
 const steps = [
   {
     id: "welcome",
-    title: "Making\nDecisions",
+    title: "意思決定を\nする",
     description:
-      "Decision making can be hard, but it doesn't have to be. By using this guide you can make decisions with confidence.",
+      "意思決定は難しいことがありますが、必ずしもそうである必要はありません。このガイドを使えば、自信を持って決められます。",
     detail:
       "Structure your thoughts into manageable layers. Reduce cognitive load by focusing on one variable at a time.",
-    action: "Let's get started!",
+    action: "はじめましょう！",
   },
   {
     id: "objective",
-    eyebrow: "Step 1 of 4",
-    title: "What are you trying to decide?",
+    eyebrow: "ステップ 1 / 5",
+    title: "何を決めようとしていますか？",
     description:
-      "This can be any question. Examples include:",
+      "これはどんな問いでもかまいません。たとえば:",
     detail: "",
-    action: "Next",
-    examples: ["Should I go on a trip?", "Should I change jobs?", "Can I retire?"],
+    action: "次へ",
+    examples: ["旅行に行くべき？", "転職するべき？", "引退できる？"],
     input: {
-      label: "Example Question",
-      placeholder: "Type your question here",
-      value: "Should I have a call with Garth?",
+      label: "質問例",
+      placeholder: "ここに質問を書いてください",
+      value: "ガースと電話するべき？",
     },
   },
   {
     id: "gains",
-    eyebrow: "Step 2 of 5",
-    title: "What is there to gain?",
+    eyebrow: "ステップ 2 / 5",
+    title: "何を得られますか？",
     description:
-      "If you go with this decision, what do you serve to gain from this, how can you benefit? Are these important to you?",
+      "この決断を選んだ場合、何を得られますか？どんな利益がありますか？それはあなたにとって大切ですか？",
     detail: "",
-    action: "Next",
+    action: "次へ",
     input: {
-      label: "Example Gains",
-      placeholder: "List what you could gain",
+      label: "得られるものの例",
+      placeholder: "得られるものを書き出してください",
       value:
-        "I can practice English\nEnglish will help me travel\nThis will increase my confidence\nI get more comfortable with Garth\nDiscover if I want more of Garth in my life",
+        "英語を練習できる\n英語は旅行に役立つ\n自信がつく\nガースにもっと気楽になれる\nガースをもっと人生に取り入れたいか分かる",
     },
   },
   {
     id: "stakes",
-    eyebrow: "Step 3 of 5",
-    title: "What are the risks?",
+    eyebrow: "ステップ 3 / 5",
+    title: "どんなリスクがありますか？",
     description:
-      "What are the different possible things that can go wrong? What are all the risks? List them off here.",
+      "何がうまくいかない可能性がありますか？考えられるリスクをここに書き出してください。",
     detail: "",
-    action: "Next",
+    action: "次へ",
     input: {
-      label: "Example Risks",
-      placeholder: "List the risks here",
+      label: "リスクの例",
+      placeholder: "ここにリスクを書き出してください",
       value:
-        "I’m not good with phone calls.\nI can’t use gestures.\nI can’t use a translator.\nI don’t know when to hang up.\nIt will feel simply embarrassing.",
+        "電話が得意ではない\nジェスチャーが使えない\n翻訳ツールが使えない\nいつ電話を切ればいいか分からない\n単純に恥ずかしく感じる",
     },
   },
   {
     id: "timeline",
-    eyebrow: "Step 4 of 5",
-    title: "And if you don't do this?",
+    eyebrow: "ステップ 4 / 5",
+    title: "では、これをしなかったら？",
     description:
-      "If you didn't go ahead with the decision, what would happen? What would you be missing out on?",
+      "この決断を実行しなかったら何が起こりますか？何を逃すことになりますか？",
     detail: "",
-    action: "Next",
+    action: "次へ",
     input: {
-      label: "Example Consequences",
-      placeholder: "List what would happen if you do nothing",
+      label: "起こりうることの例",
+      placeholder: "何もしなかった場合に起こることを書いてください",
       value:
-        "I would miss out in connecting with Garth\nGarth might feel sad or hurt\nI would miss a chance to practice English\nI would miss a chance to improve my skills",
+        "ガースとつながる機会を逃す\nガースが悲しい、または傷ついたと感じるかもしれない\n英語を練習する機会を逃す\n自分のスキルを伸ばす機会を逃す",
     },
   },
   {
     id: "mitigation",
-    eyebrow: "Step 5 of 5",
-    title: "How can we mitigate risk?",
+    eyebrow: "ステップ 5 / 5",
+    title: "どうすればリスクを減らせますか？",
     description:
-      "Given the risks, what can be done to minimize these? Risks can always be mitigated.",
+      "こうしたリスクを前提に、どうすれば最小限にできますか？リスクはいつでも軽減できます。",
     detail: "",
-    action: "Next",
+    action: "次へ",
     input: {
-      label: "Example Mitigations",
-      placeholder: "List what could reduce the risks",
+      label: "対策の例",
+      placeholder: "リスクを減らす方法を書いてください",
       value:
-        "Explain that I feel embarrsed\nUse a video call for gestures\nType in Japanese in chat at the same time\nLearn the phrase \"I should go\"",
+        "恥ずかしいと感じていることを伝える\nジェスチャーのためにビデオ通話を使う\n同時にチャットで日本語を打つ\n「そろそろ行かないと」を覚える",
     },
   },
   {
     id: "conclusion",
-    eyebrow: "Conclusion",
-    title: "Conclusion",
+    eyebrow: "結論",
+    title: "結論",
     description:
-      "If the gains are worth it - then minimize the risk.",
+      "得られるものに価値があるなら、あとはリスクを小さくしましょう。",
     detail:
       "Always remember the cost of not doing something or delaying something, it sometimes has a bigger impact of the risk itself.",
-    action: "Start Over",
+    action: "最初からやり直す",
   },
 ];
 ---
@@ -102,17 +102,15 @@ const steps = [
     <section class="screen screen-welcome is-active" data-screen="welcome" aria-live="polite">
       <div class="hero-mark"></div>
       <div class="hero-copy">
-        <h1>Making<br />Decisions</h1>
+        <h1>意思決定を<br />する</h1>
         <p class="lede">
-          Decision making can be hard, but it doesn't have to be. By using this guide you
-          can make decisions with confidence.
+          意思決定は難しいことがありますが、必ずしもそうである必要はありません。このガイドを使えば、自信を持って決められます。
         </p>
         <p class="supporting-intro">
-          This process can be applied to almost any decsion, both large and small.
+          このプロセスは、大きなことにも小さなことにも、ほとんどあらゆる決断に使えます。
         </p>
         <p class="supporting-intro">
-          For now, we will walk through an example scenario together. Later, you will be
-          able to use the same process for your own real decisions.
+          まずは一緒に例のシナリオを進めます。あとで同じプロセスを、自分自身の本当の決断にも使えるようになります。
         </p>
       </div>
     </section>
@@ -143,30 +141,28 @@ const steps = [
 
     <section class="screen screen-summary" data-screen="summary" hidden>
       <div class="screen-intro">
-        <p class="eyebrow">Conclusion</p>
-        <h2>Conclusion</h2>
-        <p class="lede">If the gains are worth it - then minimize the risk.</p>
+        <p class="eyebrow">結論</p>
+        <h2>結論</h2>
+        <p class="lede">得られるものに価値があるなら、あとはリスクを小さくしましょう。</p>
       </div>
 
       <div class="summary-panel">
         <div class="summary-card">
-          <span class="summary-label">If you don't do this</span>
+          <span class="summary-label">これをしなかったら</span>
           <p data-summary-timeline></p>
         </div>
         <div class="summary-card">
-          <span class="summary-label">Risks</span>
+          <span class="summary-label">リスク</span>
           <p data-summary-stakes></p>
         </div>
         <div class="summary-note summary-question">
-          Of the two, which is the worst outcome?
+          この二つのうち、より悪い結果はどちらですか？
         </div>
         <div class="summary-note">
-          Always remember the cost of not doing something or delaying something, it
-          sometimes has a bigger impact of the risk itself.
+          何かをしないことや先延ばしにすることの代償は、時にそのリスクそのものより大きな影響を持つことを忘れないでください。
         </div>
         <div class="summary-note">
-          The more you de-risk the situation, the more comfortable you will be with the
-          decison you make.
+          状況のリスクを減らせば減らすほど、自分の決断により安心感を持てるようになります。
         </div>
       </div>
     </section>
@@ -174,10 +170,10 @@ const steps = [
 
   <div class="bottom-bar">
     <div class="bottom-shell">
-      <button class="secondary-action" type="button" data-back hidden>Back</button>
-      <div class="progress" aria-label="Progress" data-progress></div>
+      <button class="secondary-action" type="button" data-back hidden>戻る</button>
+      <div class="progress" aria-label="進行状況" data-progress></div>
       <button class="primary-action" type="button" data-next>
-        <span data-next-label>Let's get started!</span>
+        <span data-next-label>はじめましょう！</span>
         <span aria-hidden="true">→</span>
       </button>
     </div>
@@ -325,11 +321,11 @@ const steps = [
       const timeline = root.querySelector("[data-summary-timeline]");
 
       if (stakes) {
-        stakes.textContent = state.selections.stakes || "Not selected";
+        stakes.textContent = state.selections.stakes || "未入力";
       }
 
       if (timeline) {
-        timeline.textContent = state.selections.timeline || "Not selected";
+        timeline.textContent = state.selections.timeline || "未入力";
       }
     }
 
